@@ -7,18 +7,24 @@
  * @tree: pointer to the root node of the tree to check
  * Return: height of the tree
  */
-int binary_height(const binary_tree_t *tree)
+size_t _bt_height(const binary_tree_t *tree)
 {
-	int left_height, right_height;
+	size_t l_height, r_height;
 
 	if (tree == NULL)
 		return (0);
-	left_height = binary_height(tree->left);
-	right_height = binary_height(tree->right);
-	if (left_height > right_height)
-		return (left_height + 1);
+
+	if (tree->left == NULL && tree->right == NULL)
+		return (0);
+
+	l_height = _bt_height(tree->left) + 1;
+	r_height = _bt_height(tree->right) + 1;
+
+	if (l_height > r_height)
+		return (l_height);
+
 	else
-		return (right_height + 1);
+		return (r_height);
 }
 
 /**
